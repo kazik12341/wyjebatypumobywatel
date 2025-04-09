@@ -20,19 +20,20 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload GitHub Pages artifact
+      - name: Upload static files (as github-pages artifact)
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages
-          path: '.'
+          name: github-pages         # 👈 to musi być dokładnie ta nazwa
+          path: '.'                  # 👈 tutaj możesz zmienić np. na "dist/" jeśli budujesz stronę
 
-              - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
